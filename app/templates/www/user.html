@@ -1,0 +1,32 @@
+{% extends "www/base.html" %}
+
+{% block content %}
+  <h1>Hello {{ user.name }} !</h1>
+
+  <a id="unregister" href="#" data-href="{{ url_for('.unregister_user', user_id=user.id) }}">UnRegister</a>
+
+  <h2>Update</h2>
+  <form method="POST" action="{{ url_for('.update_user', user_id=user.id) }}">
+      {{ form.csrf_token }}
+      {{ form.name.label }} {{ form.name(size=20) }}
+      {{ form.submit() }}
+  </form>
+
+{% endblock content %}
+
+
+{% block script %}
+<script>
+  var unregisterElement = document.getElementById('unregister');
+  unregisterElement.addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        location.href = xhr.responseText;
+      }
+    };
+    xhr.open('DELETE', unregisterElement.dataset.href, true);
+    xhr.send();
+  }, false);
+</script>
+{% endblock script %}

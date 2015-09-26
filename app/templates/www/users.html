@@ -4,7 +4,16 @@
   <h1>Users</h1>
   <ul>
     {% for user in users if user.id %}
-      <li>{{ user }}</li>
+      <li><a href="{{ url_for('.user', user_id=user.id) }}">{{ user.name }}</a></li>
+    {% else %}
+      <li>Nothing</li>
     {% endfor %}
   </ul>
+
+  <h2>Register</h2>
+  <form method="POST" action="{{ url_for('.users') }}">
+      {{ form.csrf_token }}
+      {{ form.name.label }} {{ form.name(size=20) }}
+      {{ form.submit() }}
+  </form>
 {% endblock content %}
