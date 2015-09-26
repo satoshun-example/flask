@@ -2,10 +2,12 @@ import os
 
 from flask import Flask
 from flask.ext.cache import Cache
+from flask.ext.redis import FlaskRedis
 
 from config import config, basedir
 
 cache = Cache()
+redis = FlaskRedis()
 
 
 def create_app(config_name):
@@ -18,6 +20,7 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     cache.init_app(app)
+    redis.init_app(app)
 
     # WWW
     from .www import www as www_blueprint

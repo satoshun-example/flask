@@ -5,7 +5,7 @@ from flask import (
 )
 
 from . import www
-from .. import cache as cac
+from .. import cache as cac, redis as red
 
 @www.route('/', methods=['GET'])
 def index():
@@ -18,4 +18,10 @@ def cache():
         cac.cache.set('counter', value=0)
     value = cac.cache.inc(key='counter')
 
+    return render_template('www/cache.html', value=value)
+
+
+@www.route('/redis', methods=['GET'])
+def redis():
+    value = red.incr('counter-redis')
     return render_template('www/cache.html', value=value)

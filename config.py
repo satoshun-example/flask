@@ -16,6 +16,8 @@ class DevelopmentConfig(Config):
     CACHE_TYPE = 'memcached'
     CACHE_MEMCACHED_SERVERS = ('127.0.0.1:11211', )
 
+    REDIS_URL = 'redis://:@localhost:6379/0'
+
 
 config = {
     'development': DevelopmentConfig,
