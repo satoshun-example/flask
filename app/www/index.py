@@ -25,3 +25,4 @@ def cache():
 def redis():
     value = red.incr('counter-redis')
     return render_template('www/cache.html', value=value)
+

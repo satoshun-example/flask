@@ -13,6 +13,9 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
 
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://developer:@localhost:3306/flasksample?charset=utf8'
+    SQLALCHEMY_ECHO = True
+
     CACHE_TYPE = 'memcached'
     CACHE_MEMCACHED_SERVERS = ('127.0.0.1:11211', )
 
