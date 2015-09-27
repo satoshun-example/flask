@@ -11,6 +11,16 @@
   </ul>
 
   <h2>Register</h2>
+  {%- if form.errors %}
+    <div>
+    {%- for fieldname, errors in form.errors.items() %}
+      {%- for error in errors %}
+        <p class="error" style="color:red;">{{error}}</p>
+      {%- endfor %}
+    {%- endfor %}
+    </div>
+  {%- endif %}
+
   <form method="POST" action="{{ url_for('.users') }}">
       {{ form.csrf_token }}
       {{ form.name.label }} {{ form.name(size=20) }}

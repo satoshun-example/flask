@@ -6,8 +6,8 @@
 ## Features
 
 - Use Python3.5
-- Use SQLAlchemy
-- Use Redis()
+- Use SQLAlchemy(MySQL)
+- Use Redis
 - Use Memcached
 
 
